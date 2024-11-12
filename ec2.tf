@@ -23,13 +23,13 @@
 
 resource "aws_instance" "server1" {
   ami                    = "ami-0ddc798b3f1a5117e"
-  instance_type         = "t2.micro"
+  instance_type         = var.INSTANCE_TYPE
   vpc_security_group_ids = [aws_security_group.sg1.id]
-  availability_zone     = "us-east-1a"
+  availability_zone     = "${var.REGION}"
   subnet_id             = aws_subnet.Private1.id
   user_data             = file("code.sh") 
   tags = {
-    Name = "webserver-1"
+    Name = var.ENVIRONMENT
   }
 }
 
@@ -41,6 +41,6 @@ resource "aws_instance" "server2" {
   subnet_id             = aws_subnet.Private2.id
   user_data             = file("code.sh")  # Correct syntax
   tags = {
-    Name = "webserver-2"
+    Name = "Webserver-2"
   }
 }
