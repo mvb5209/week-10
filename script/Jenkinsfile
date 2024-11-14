@@ -7,5 +7,10 @@ pipeline{
                 sh 'terraform init -no-color'
             }
         }
+        stage('validate'){
+            steps{
+                sh 'terraform validate'
+            }
+        }
     }
 }
